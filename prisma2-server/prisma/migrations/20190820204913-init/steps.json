@@ -1,0 +1,173 @@
+{
+  "version": "0.2.2",
+  "steps": [
+    {
+      "stepType": "CreateModel",
+      "name": "Pokemon",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "PokemonAttack",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Attack",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Pokemon",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": true,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Pokemon",
+      "name": "number",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": true
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Pokemon",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Pokemon",
+      "name": "attacks",
+      "type": {
+        "Relation": {
+          "to": "PokemonAttack",
+          "to_fields": [
+            "id"
+          ],
+          "name": "PokemonToPokemonAttack",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "PokemonAttack",
+      "name": "id",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "PokemonAttack",
+      "name": "special",
+      "type": {
+        "Relation": {
+          "to": "Attack",
+          "to_fields": [],
+          "name": "AttackToPokemonAttack",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "PokemonAttack",
+      "name": "pokemon",
+      "type": {
+        "Relation": {
+          "to": "Pokemon",
+          "to_fields": [],
+          "name": "PokemonToPokemonAttack",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Attack",
+      "name": "id",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Attack",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Attack",
+      "name": "damage",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Attack",
+      "name": "pokemonAttack",
+      "type": {
+        "Relation": {
+          "to": "PokemonAttack",
+          "to_fields": [
+            "id"
+          ],
+          "name": "AttackToPokemonAttack",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    }
+  ]
+}

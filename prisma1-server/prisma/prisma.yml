@@ -1,0 +1,20 @@
+# Specifies the HTTP endpoint of your Prisma API.
+endpoint: 'http://localhost:4466'
+
+# Defines your models, each model is mapped to the database as a table.
+datamodel: datamodel.prisma
+
+# Specifies the language and directory for the generated Prisma client.
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client/
+  - generator: graphql-schema
+    output: ../src/generated/schema.graphql
+hooks:
+  post-deploy:
+    - prisma generate
+    - npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma
+
+# Seeds initial data into the database by running a script.
+seed:
+  run: node ./prisma/seed.js

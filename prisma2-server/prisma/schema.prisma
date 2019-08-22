@@ -1,0 +1,31 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+  default  = true
+}
+
+generator photon {
+  provider = "photonjs"
+}
+
+generator nexus_prisma {
+  provider = "nexus-prisma"
+}
+
+model Pokemon {
+  id      String         @default(cuid()) @id @unique
+  number  Int            @unique
+  name    String
+  attacks PokemonAttack?
+}
+
+model PokemonAttack {
+  id      Int      @id
+  special Attack[]
+}
+
+model Attack {
+  id     Int    @id
+  name   String
+  damage String
+}
