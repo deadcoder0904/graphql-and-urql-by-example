@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seed.js",
+    "prisma": "prisma"
   }
 }
