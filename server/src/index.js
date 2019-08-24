@@ -53,7 +53,7 @@ const Query = objectType({
           where: {
               name
           }
-        })
+        });
       },
     })
   },

@@ -9,8 +9,8 @@ const getPokemonData = `
 			name
 			attacks {
 				special {
+					id
 					name
-					type
 					damage
 				}
 			}
@@ -30,16 +30,16 @@ export const ListPokemonDataHook = ({ name = "Pikachu" }) => {
 		return `Oh no! Error: ${error}`;
 	}
 
-	const { pokemon } = data;
+	const pokemon = data.pokemon[0];
 	return (
 		<>
 			<h1>
 				#{pokemon.number} {pokemon.name}
 			</h1>
 			<ul>
-				{pokemon.attacks.special.map(({ name, type, damage }) => (
+				{pokemon.attacks.special.map(({ name, id, damage }) => (
 					<li key={name}>
-						{name} ({type}) - {damage}
+						#{id} {name} - {damage}
 					</li>
 				))}
 			</ul>

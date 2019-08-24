@@ -13,6 +13,7 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "prisma2": "^2.0.0-preview-8"
   }
 }

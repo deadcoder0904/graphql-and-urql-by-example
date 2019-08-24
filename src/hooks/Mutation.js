@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import { useMutation } from 'urql'
+import React, { useState } from 'react';
+import { useMutation } from 'urql';
 
 const addPokemon = `
-  mutation AddPokemon($name: String!) {
-    addPokemon(name: $name) {
+  mutation AddPokemon($number: Int!, $name: String!) {
+    addPokemon(data: {
+      number: $number,
+      name: $name
+    }) {
       id
+      number
       name
     }
   }
@@ -12,13 +16,23 @@ const addPokemon = `
 
 export const InsertPokemonHook = () => {
   const [name, setName] = useState('')
-	const [{ fetching, data, error }, executeMutation] = useMutation(addPokemon)
-
+  const [{ fetching, data, error }, executeMutation] = useMutation(addPokemon)
   return (
     <>
-      {error && <div>Error: {error}</div>}
+      {error && <div>Error: {JSON.stringify(error)}</div>}
       <input value={name} onChange={e => setName(e.target.value)} />
-      <button onClick={() => executeMutation({ name })}>Add Pokemon</button>
+      <button onClick={() => {
+        if (name.trim() === "") return
+        executeMutation({ name, number: Math.ceil(Math.random() * 1000) })
+        setName("")
+      }}>
+        Add Pokemon
+      </button>
+      {data && (<div>
+        <br/>
+        Mutation successful: 
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>)}
     </>
   )
 }
