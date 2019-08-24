@@ -1,7 +1,0 @@
-{
-  "extends": "./node_modules/@ntlf/node-scripts/dist/config/eslintrc.js",
-  "rules": {
-    "import/prefer-default-export": 0,
-    "@typescript-eslint/camelcase": 0
-  }
-}

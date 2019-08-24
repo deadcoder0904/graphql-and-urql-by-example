@@ -77,4 +77,22 @@ mutation addPokemon {
     name
   }
 }
+
+# subscribe when new pokemon is added
+subscription PokemonSub {
+  newPokemon {
+    id
+    number
+    name
+    attacks {
+      special {
+        id
+        name
+        damage
+      }
+    }
+  }
+}
 ```
+
+Unfortunately, [subscriptions](https://github.com/prisma/prisma2/issues/298) aren't supported yet by Prisma 2. But I'll add them as soon as they are :)
